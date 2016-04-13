@@ -236,7 +236,7 @@ However, we should not ditch the whole method just because of a single enthusiat
 <blockquote><p>If $A$ is found to yield the highest probability of click so that $$P(O|A) \geq P(O|B) \text{ and } P(O|A) \geq P(O|C)$$ at the impression $n$,
 then we specifically <strong>set</strong> $$P(A) > P(B) = P(C)$$ at the impression $n+1$ (an impression is one user visiting the page, whether she clicks or not, "impression" is also often called "sample" or "trial").</p>
 </blockquote>
-<p>This <strong>inequality is actually the only difference</strong>, in the data gathering stage, between the multi-armed bandit method and typical A/B testing. In the blog, the author devised quite a complicated scheme to determine these probabilities, by splitting the general web serving algorithm the into two phases with two different probability of occurence:</p>
+<p>This <strong>inequality is actually the only difference</strong>, in the data gathering stage, between the multi-armed bandit method and typical A/B testing. In the blog, the author devised quite a complicated scheme to determine these probabilities, by splitting the general web serving algorithm into two phases with two different probability of occurrence:</p>
 <ul>
 <li>One phase of <em>exploration</em> (happening 10% of the time in his example) in which any event can occur with the same probability (like in proper A/B testing).</li>
 <li>One phase of <em>exploitation</em> (occurring 90% of the time in his example) with the <strong>favored</strong> event always being served.</li>
