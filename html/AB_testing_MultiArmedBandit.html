@@ -315,7 +315,7 @@ The user #99 got an orange button and DIDN'T click on it!
 
 </code></pre>
 <h3 id="2.3.-Campaigns">2.3. Campaigns<a class="anchor-link" href="#2.3.-Campaigns">&#182;</a></h3><p>As we said, in A/B testing, $P(A) = P(B) = P(C)$, therefore the code above is already suited to this use case: all we have to do is to gather the results.</p>
-<p>In the case of the multi-armed bandit, $P(O|X)$ (<code>P_O_X</code>) should be updated at each iteration/impression to favor the event which yields the best outcome at that time.</p>
+<p>In the case of the multi-armed bandit, $P(X)$ should be updated at each iteration/impression to favor the event which yields the best outcome at that time.</p>
 <p>However, our partial model implementations are too slow to be used in real simulations. That is why we provide the following code which is less readable but much faster and strictly equivalent.</p>
 
 </div>
