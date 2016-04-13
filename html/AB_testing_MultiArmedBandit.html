@@ -2840,7 +2840,7 @@ MAB strategy:
 <h2 id="4.-What-does-that-mean-in-practice?">4. What does that mean in practice?<a class="anchor-link" href="#4.-What-does-that-mean-in-practice?">&#182;</a></h2><h3 id="4.1.-Can-we-use-it?">4.1. Can we use it?<a class="anchor-link" href="#4.1.-Can-we-use-it?">&#182;</a></h3><p>The multi-armed bandit strategy is generaly fine for web optimization.</p>
 <blockquote><p>Really?! But all these statistical considerations and simulations to show the limits of the method and it turns out to be fine?</p>
 </blockquote>
-<p>Most likely yes, precisely because these limits were found not relevant to web optimization. Basically, if you are fine saying:</p>
+<p>Most likely yes, precisely because these limits were found not to be relevant to web optimization. Basically, if you are fine saying:</p>
 <blockquote><p><em>We determined that $A$ yields <strong>similar or better</strong> results than $B$, $C$, etc.</em></p>
 </blockquote>
 <p>then the multi-armed bandit strategy might be worth a try. If you want to say:</p>
@@ -2850,7 +2850,7 @@ MAB strategy:
 <p>This skewness is only ever a problem in two cases:</p>
 <ul>
 <li>if the real conversion rates are actually <em>the same</em> (because you should see many false positives);</li>
-<li>if what we are interested in <em>quantifying</em> the differences (because you cannot easily calculate a significance level).</li>
+<li>if we are interested in <em>quantifying</em> the differences (because you cannot easily calculate a significance level).</li>
 </ul>
 <p>If there was a difference from the start, it is necessarily overestimated by the strategy, which is generally not a problem.</p>
 <p>In other words, A/B testing is the correct method to answer "is there a difference? if so, how much is it?" whereas the multi-armed method is only a strategy to find an event yielding the best results ("best" can be "same as the others", but you won't know it). Of course we knew that, we said it from the start, this is everywhere... but now we have proofs and tools.</p>
@@ -2860,7 +2860,7 @@ MAB strategy:
 </blockquote>
 <p>As we have seen, this is completely wrong in at least one case, the one which A/B testing was designed for: <strong>proving</strong> that there is actually a difference (in clinical tests for instance). Even if the tested drug is no better at curing cancer than sugar, the multi-armed bandit method could favor it and the statistical test prove that this difference is significant while it isn't really.</p>
 <p>We can also safely say that that claim is not correct in general if we "set it and forget", i.e. for continuous optimization. As a simple example, let's set $$P(O|A) = 0.1 \quad \text{ and } \quad P(O|B) = 0.2$$ assuming that we have $10000$ impressions per month.
-Let's A/B test on $2000$ impressions in order to get a rough estimate of these conversion rates in order to send the optimized version to the remaining users (statistical power of $99\%$). We should obtain
+Let's A/B test on $2000$ impressions to get a rough estimate of these conversion rates in order to send the optimized version to the remaining users (statistical power of $99\%$). We should obtain
 $$N_\text{clicks}^\text{AB} = 1000*0.2 + 1000*0.1 + 0.99*0.2*(10000-1000) + 0.01*0.1*(10000-1000) = 2091$$
 clicks by the end of the month, on the long run. This is to be compared to the multi-armed bandit strategy which would yield only
 $$N_\text{clicks}^\text{MAB} = 0.9333333*0.2*10000 + 0.0666666*0.1*10000 = 1933$$
@@ -2870,19 +2870,6 @@ clicks (assuming that the favored event is found immediately)... In only one mon
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
     </div>
   </div>
