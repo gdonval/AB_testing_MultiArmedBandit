@@ -178,7 +178,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Analysis-of-the-multi-armed-bandit-strategy-for-web-service-optimization">Analysis of the multi-armed bandit strategy for web service optimization<a class="anchor-link" href="#Analysis-of-the-multi-armed-bandit-strategy-for-web-service-optimization">&#182;</a></h1><p>I recently stumbled across a reddit link <a href="https://redd.it/4dlioz">https://redd.it/4dlioz</a>
 to a (now 3-year-old) blog post about a method, the multi-armed bandit strategy, claimed to yield better results than A/B testing in every case for web optimization.</p>
-<p>The large amount of upvotes this post gathered (now 235) really surprised me, given the tone, the vagueness of the many (unsupported) claims and the presence of easily spotted inaccuracies (more about that later).
+<p>The large amount of upvotes this post gathered (now 235) was surprising, given the tone, the vagueness of the many (unsupported) claims and the presence of easily spotted inaccuracies (more about that later).
 However, we should not ditch the whole method just because of a single enthusiatic and inaccurate presentation. That's why we are going to explain that strategy, compare it to the widely used A/B testing method through statistics and simulations to finally explain when it is okay to use the multi-armed bandit strategy.</p>
 <h2 id="Table-of-content">Table of content<a class="anchor-link" href="#Table-of-content">&#182;</a></h2><ul>
 <li><a href="#1.-What-are-we-talking-about?">Part 1 - Introduction: "What are we talking about?"</a></li>
@@ -668,7 +668,7 @@ Large differences:
 <p>Why is that? A/B testing is very good at minimizing the uncertainty on all the $\tilde{P}(O|X)$ as all of them are sampled evenly. In the case of the multi-armed bandit strategy, the uncertainty on the most favored $\tilde{P}(O|X)$ is very low, but the one one the least favored  $\tilde{P}(O|X)$ is really large (we are going to illustrate that in the next subsection). But in practice, it is less efficient to sample one particular event more often than it is to sample all the events evenly.</p>
 <p>That means that the multi-armed bandit strategy always need more samples to reach the exact same significance as A/B testing and this is the main reason why we can claim that A/B testing is always better to answer the question "is there actually a difference?".</p>
 <p>However, this is not the only reason: as we are going to see in the following subsection, the answer of multi-armed bandit strategy to that specific question is actually much worse than this.</p>
-<h3 id="3.3.-The-underlying-probability-density-function-does-not-follow-the-beta-distribution">3.3. The underlying probability density function does not follow the beta distribution<a class="anchor-link" href="#3.3.-The-underlying-probability-density-function-does-not-follow-the-beta-distribution">&#182;</a></h3><p>At this stage, we could naturally argue that a few more samples are all what is needed to get a better answer. Well, yes and no.</p>
+<h3 id="3.2.-The-underlying-probability-density-function-does-not-follow-the-beta-distribution">3.2. The underlying probability density function does not follow the beta distribution<a class="anchor-link" href="#3.2.-The-underlying-probability-density-function-does-not-follow-the-beta-distribution">&#182;</a></h3><p>At this stage, we could naturally argue that a few more samples are all what is needed to get a better answer. Well, yes and no.</p>
 <ul>
 <li>Yes because this would indeed reduce the uncertainties. </li>
 <li>No because this is irrelevant: <ol>
@@ -2708,7 +2708,7 @@ AElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.4.-The-christmas-effect,-or-varying-$P(O|X)$">3.4. The christmas effect, or varying $P(O|X)$<a class="anchor-link" href="#3.4.-The-christmas-effect,-or-varying-$P(O|X)$">&#182;</a></h3><p>One last thing we want to test is the effect of varying $P(O)$ during the campaign as some say that the multi-armed strategy could fail very badly.<br>
+<h3 id="3.3.-The-christmas-effect,-or-varying-$P(O|X)$">3.3. The christmas effect, or varying $P(O|X)$<a class="anchor-link" href="#3.3.-The-christmas-effect,-or-varying-$P(O|X)$">&#182;</a></h3><p>One last thing we want to test is the effect of varying $P(O)$ during the campaign as some say that the multi-armed strategy could fail very badly.<br>
 Let's imagine that we want to start a one-month campaign which just happens to start by the middle of November. We are expecting $1000$ impressions during the first two weeks and $2000$ impressions during the last weeks (Christmas powa!). Now, let's assume that the real conversion rates in November happen to be:</p>
 
 <pre><code>&gt;&gt;&gt; P_O_X_nov = {"A": 0.10, "B": 0.20}
@@ -2854,7 +2854,7 @@ MAB strategy:
 </ul>
 <p>If there was a difference from the start, it is necessarily overestimated by the strategy, which is generally not a problem.</p>
 <p>In other words, A/B testing is the correct method to answer "is there a difference? if so, how much is it?" whereas the multi-armed method is only a strategy to find an event yielding the best results ("best" can be "same as the others", but you won't know it). Of course we knew that, we said it from the start, this is everywhere... but now we have proofs and tools.</p>
-<h3 id="4.2.-A-word-about-the-original-blog-post:-is-multi-armed-bandit-always-better-than-A/B-testing?">4.2. A word about the original blog post: is multi-armed bandit always better than A/B testing?<a class="anchor-link" href="#4.2.-A-word-about-the-original-blog-post:-is-multi-armed-bandit-always-better-than-A/B-testing?">&#182;</a></h3><p>The strategy given in the original blog post turned out to be correct even though there were a lot of mistakes in the post itself... Yes, the distribution of values is skewed by the method; yes, we can use more than two options in A/B testing; yes, we can add or remove options as we like (well, almost); no, this shouldn't be used in clinical trials; no, you can't set it an forget it (if you want maximal reward); etc.</p>
+<h3 id="4.2.-Is-multi-armed-bandit-always-better-than-A/B-testing?">4.2. Is multi-armed bandit always better than A/B testing?<a class="anchor-link" href="#4.2.-Is-multi-armed-bandit-always-better-than-A/B-testing?">&#182;</a></h3><p>The strategy given in the original blog post turned out to be correct even though there were a lot of mistakes in the post itself... Yes, the distribution of values is skewed by the method; yes, we can use more than two options in A/B testing; yes, we can add or remove options as we like (well, almost); no, this shouldn't be used in clinical trials; no, you can't set it an forget it (if you want maximal reward); etc.</p>
 <p>One particular claim is particularly strong... and generally false:</p>
 <blockquote><p>you can always do better than A/B testing -- sometimes, two or three times better</p>
 </blockquote>
@@ -2865,7 +2865,8 @@ $$N_\text{clicks}^\text{AB} = 1000*0.2 + 1000*0.1 + 0.99*0.2*(10000-1000) + 0.01
 clicks by the end of the month, on the long run. This is to be compared to the multi-armed bandit strategy which would yield only
 $$N_\text{clicks}^\text{MAB} = 0.9333333*0.2*10000 + 0.0666666*0.1*10000 = 1933$$
 clicks (assuming that the favored event is found immediately)... In only one month A/B testing performs better in that particular case.</p>
-<p>The "set and forget" part is actually a more workaround than a feature: it is not as easy to say when to stop using that strategy compared to proper A/B testing. As well, multivariate analysis (let's say to identify interactions between the button color, shape and font size) requires the same setup as basic A/B testing. In particular, this kind of analysis cannot be performed using the multi-armed bandit strategy because we need significant estimates of the differences.</p>
+<p>The "set and forget" part is actually a more workaround than a feature: it is not as easy to say when to stop using that strategy compared to proper A/B testing. Comparing overall click-through rates at constant sample size is not relevant. You would have to estimate a proper sample size for the multi-armed bandit strategy, by using the code, running simulations, estimating the "experimental" distributions for different $N$ until reaching the proper overlap (i.e. the proper statistical level).</p>
+<p>As well, multivariate analysis (let's say to identify interactions between the button color, shape and font size) requires the same setup as basic A/B testing. In particular, this kind of analysis cannot be performed using the multi-armed bandit strategy because we need significant estimates of the differences.</p>
 <p>All that said, of course there are numerous cases where we expect the multi-armed bandit strategy to outperform A/B testing. But not "always"/"systematically"... not even "generally"! The two methods answer different questions, both of which can lead to far higher click-through rates than the other depending on the case and how these methods are used.</p>
 
 </div>
